@@ -12,6 +12,45 @@ function getNamespace(el: HTMLElement): string | null {
   return configurator?.id || null;
 }
 
+function loadValueFromStorage(host: HTMLElement): string {
+  const ns = getNamespace(host);
+  const key = getKeyName(host);
+  if (ns && key) {
+    const obj = localStorage.getItem(ns);
+    if (obj) {
+      try {
+        const parsed = JSON.parse(obj);
+        return parsed[key] || "";
+      } catch {}
+    }
+  }
+  return host.textContent?.trim() || "";
+}
+
+function saveValueToStorage(host: HTMLElement, value: string) {
+  const ns = getNamespace(host);
+  const key = getKeyName(host);
+  if (ns && key) {
+    const obj = localStorage.getItem(ns);
+    let parsed: Record<string, string> = {};
+    if (obj) {
+      try {
+        parsed = JSON.parse(obj);
+      } catch {}
+    }
+    if (value) {
+      parsed[key] = value;
+    } else {
+      delete parsed[key];
+    }
+    if (Object.keys(parsed).length > 0) {
+      localStorage.setItem(ns, JSON.stringify(parsed));
+    } else {
+      localStorage.removeItem(ns);
+    }
+  }
+}
+
 function KeyValueComponent(this: HTMLElement) {
   const host = this;
   const [value, setValue] = useState("");
@@ -19,22 +58,7 @@ function KeyValueComponent(this: HTMLElement) {
 
   useEffect(() => {
     if (initialized) return;
-    const ns = getNamespace(host);
-    const key = getKeyName(host);
-    let v = "";
-    if (ns && key) {
-      const obj = localStorage.getItem(ns);
-      if (obj) {
-        try {
-          const parsed = JSON.parse(obj);
-          v = parsed[key] || "";
-        } catch {}
-      }
-    }
-    if (!v) {
-      v = host.textContent?.trim() || "";
-    }
-    setValue(v);
+    setValue(loadValueFromStorage(host));
     setInitialized(true);
   }, [initialized]);
 
@@ -43,27 +67,7 @@ function KeyValueComponent(this: HTMLElement) {
   }
 
   function onBlur(host: HTMLElement, e: Event) {
-    const ns = getNamespace(host);
-    const key = getKeyName(host);
-    if (ns && key) {
-      const obj = localStorage.getItem(ns);
-      let parsed: Record<string, string> = {};
-      if (obj) {
-        try {
-          parsed = JSON.parse(obj);
-        } catch {}
-      }
-      if (value) {
-        parsed[key] = value;
-      } else {
-        delete parsed[key];
-      }
-      if (Object.keys(parsed).length > 0) {
-        localStorage.setItem(ns, JSON.stringify(parsed));
-      } else {
-        localStorage.removeItem(ns);
-      }
-    }
+    saveValueToStorage(host, value);
   }
 
   const placeholder = value ? "" : "no token defined";

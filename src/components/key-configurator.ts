@@ -15,46 +15,62 @@ const INFO_TEXT = `
 </ul>
 `;
 
+function initializeLocalStorageIfNeeded(host: HTMLElement) {
+  if (!localStorage.getItem(host.id)) {
+    const pairs = Array.from(host.querySelectorAll("key-pair"));
+    const obj: Record<string, string> = {};
+    pairs.forEach((pair) => {
+      const name = pair.querySelector("key-name")?.textContent?.trim();
+      const value = pair.querySelector("key-value")?.textContent?.trim();
+      if (name && value) {
+        obj[name] = value;
+      }
+    });
+    if (Object.keys(obj).length > 0) {
+      localStorage.setItem(host.id, JSON.stringify(obj));
+    }
+  }
+}
+
+function addClickOutsideListener(
+  host: HTMLElement,
+  setPanel: (v: string) => void
+) {
+  function handleClickOutside(e: MouseEvent) {
+    if (!host.contains(e.target as Node)) {
+      setPanel("");
+    }
+  }
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}
+
+function initializeConfigurator(
+  host: HTMLElement,
+  setPanel: (v: string) => void
+) {
+  if (!host.id) {
+    throw new Error("<key-configurator> requires a non-empty id attribute.");
+  }
+  const panelKey = `${host.id}:panel`;
+  const saved = localStorage.getItem(panelKey);
+  if (saved === "config" || saved === "info") {
+    setPanel(saved);
+  } else {
+    setPanel("");
+  }
+  initializeLocalStorageIfNeeded(host);
+  return addClickOutsideListener(host, setPanel);
+}
+
 function KeyConfiguratorComponent(this: HTMLElement) {
   const [panel, setPanel] = useState("config"); // 'config' | 'info' | ''
 
   // Restore panel state from localStorage
   useEffect(() => {
-    if (!this.id) {
-      throw new Error("<key-configurator> requires a non-empty id attribute.");
-    }
-    const panelKey = `${this.id}:panel`;
-    const saved = localStorage.getItem(panelKey);
-    if (saved === "config" || saved === "info") {
-      setPanel(saved);
-    } else {
-      setPanel("");
-    }
-    // Only set if not already present
-    if (!localStorage.getItem(this.id)) {
-      const pairs = Array.from(this.querySelectorAll("key-pair"));
-      const obj: Record<string, string> = {};
-      pairs.forEach((pair) => {
-        const name = pair.querySelector("key-name")?.textContent?.trim();
-        const value = pair.querySelector("key-value")?.textContent?.trim();
-        if (name && value) {
-          obj[name] = value;
-        }
-      });
-      if (Object.keys(obj).length > 0) {
-        localStorage.setItem(this.id, JSON.stringify(obj));
-      }
-    }
-    // Add click outside listener
-    function handleClickOutside(e: MouseEvent) {
-      if (!this.contains(e.target as Node)) {
-        setPanel("");
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside.bind(this));
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside.bind(this));
-    };
+    return initializeConfigurator(this, setPanel);
   }, [this.id]);
 
   // Persist panel state
