@@ -22,7 +22,39 @@ function KeyConfiguratorComponent(this: HTMLElement) {
       }
     }
   }, [this.id]);
-  return html`<slot></slot>`;
+  return html`
+    <style>
+      :host {
+        display: block;
+        border: 1px solid #ccc;
+        padding: 1em;
+        max-width: 400px;
+        font-family: sans-serif;
+        margin: 2em;
+        position: relative;
+        box-sizing: border-box;
+      }
+      .cope-label {
+        position: absolute;
+        top: 0;
+        left: 1em;
+        transform: translateY(-50%);
+        background: #fff;
+        padding: 0 0.5em;
+        font-size: 0.85em;
+        color: #888;
+        font-family: monospace;
+        pointer-events: none;
+      }
+      ::slotted(key-pair) {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1em;
+      }
+    </style>
+    <span class="scope-label">Sope: ${this.id}</span>
+    <slot></slot>
+  `;
 }
 
 export const KeyConfigurator = component(KeyConfiguratorComponent, {

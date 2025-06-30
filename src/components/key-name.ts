@@ -1,7 +1,15 @@
 import { component, html } from "haunted";
 
 function KeyNameComponent(this: HTMLElement) {
-  return html`<span>${this.textContent}</span>`;
+  return html`
+    <style>
+      :host {
+        flex: 1;
+        font-weight: bold;
+      }
+    </style>
+    <span>${this.textContent}</span>
+  `;
 }
 
 export const KeyName = component(KeyNameComponent);

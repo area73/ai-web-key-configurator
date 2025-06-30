@@ -68,13 +68,24 @@ function KeyValueComponent(this: HTMLElement) {
 
   const placeholder = value ? "" : "no token defined";
 
-  return html`<input
-    type="text"
-    .value=${value}
-    @input=${onInput}
-    @blur=${(e: Event) => onBlur(host, e)}
-    placeholder=${placeholder}
-  />`;
+  return html`
+    <style>
+      :host {
+        flex: 2;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 0.3em;
+      }
+    </style>
+    <input
+      type="text"
+      .value=${value}
+      @input=${onInput}
+      @blur=${(e: Event) => onBlur(host, e)}
+      placeholder=${placeholder}
+    />
+  `;
 }
 
 export const KeyValue = component(KeyValueComponent);
