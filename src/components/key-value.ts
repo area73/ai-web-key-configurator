@@ -70,13 +70,34 @@ function KeyValueComponent(this: HTMLElement) {
 
   return html`
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
       :host {
         width: 100%;
       }
       input[type="text"] {
         width: 100%;
-        padding: 0.3em;
+        padding: 0.5em 0.9em;
+        font-size: 1em;
+        font-family: "Inter", "Segoe UI", "Roboto", Arial, sans-serif;
+        border: 1px solid #d1d5db;
+        border-radius: 0.7em;
+        background: #f7f7fa;
+        color: #222;
+        outline: none;
         box-sizing: border-box;
+        transition: border-color 0.2s, background 0.2s;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+      }
+      input[type="text"]:focus {
+        border-color: #007aff;
+        background: #fff;
+      }
+      input[type="text"]::placeholder {
+        color: #b0b0b0;
+        opacity: 1;
+        font-weight: 400;
       }
     </style>
     <input
