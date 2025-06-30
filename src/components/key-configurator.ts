@@ -1,13 +1,17 @@
 import { component, html, useState, useEffect } from "haunted";
 
 const INFO_TEXT = `
-<b>Key Configurator</b> es un componente web para gestionar claves de configuración de forma segura y reutilizable.
+<b>Key Configurator</b> is a web component for securely and conveniently managing configuration keys.
 <ul>
-  <li>Haz clic en ⚙️ para ver y editar las claves configurables.</li>
-  <li>Haz clic en ℹ️ para ver esta ayuda.</li>
-  <li>Los valores se guardan en <code>localStorage</code> bajo el id del componente.</li>
-  <li>Al editar y salir de un campo, el valor se actualiza automáticamente.</li>
-  <li>Si borras un valor, la clave se elimina del almacenamiento.</li>
+  <li>Click <span class="info-icon">
+    <svg class="info-svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 8 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 5 15.4a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 5 8.6a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 8 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09c0 .66.42 1.25 1 1.51a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09c-.66 0-1.25.42-1.51 1z"/></svg>
+  </span> to view and edit your configuration keys.</li>
+  <li>Click <span class="info-icon">
+    <svg class="info-svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="8"/></svg>
+  </span> to view this help panel.</li>
+  <li>Values are saved in <code>localStorage</code> under the component's <b>id</b> namespace.</li>
+  <li>When you edit and leave a field, the value is updated automatically.</li>
+  <li>If you clear a value, the key is removed from storage.</li>
 </ul>
 `;
 
@@ -153,6 +157,32 @@ function KeyConfiguratorComponent(this: HTMLElement) {
         border: 1px solid #e0e0e0;
         font-family: "Inter", "Segoe UI", "Roboto", Arial, sans-serif;
         box-sizing: border-box;
+      }
+      .info-content ul {
+        line-height: 1.9;
+        margin: 1.1em 0 0 0;
+        padding-left: 1.2em;
+      }
+      .info-content li {
+        margin-bottom: 0.2em;
+      }
+      .info-content svg {
+      }
+      .info-icon {
+        vertical-align: middle;
+        display: inline-block;
+        height: 1em;
+        width: 1em;
+        line-height: 1;
+      }
+      .info-svg {
+        vertical-align: middle;
+        display: inline-block;
+        height: 1em;
+        width: 1em;
+        line-height: 1;
+        position: relative;
+        top: -2px;
       }
       ::slotted(key-pair) {
         display: grid;
