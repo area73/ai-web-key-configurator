@@ -15,6 +15,24 @@ const INFO_TEXT = `
 </ul>
 `;
 
+// Helper: get panel state from localStorage
+function getPanelState(id: string): string {
+  const panelKey = `${id}:panel`;
+  const saved = localStorage.getItem(panelKey);
+  return saved === "config" || saved === "info" ? saved : "";
+}
+
+// Helper: persist panel state to localStorage
+function persistPanelState(id: string, panel: string) {
+  const panelKey = `${id}:panel`;
+  if (!panel) {
+    localStorage.removeItem(panelKey);
+  } else {
+    localStorage.setItem(panelKey, panel);
+  }
+}
+
+// Helper: initialize localStorage for key-pairs
 function initializeLocalStorageIfNeeded(host: HTMLElement) {
   if (!localStorage.getItem(host.id)) {
     const pairs = Array.from(host.querySelectorAll("key-pair"));
@@ -32,6 +50,7 @@ function initializeLocalStorageIfNeeded(host: HTMLElement) {
   }
 }
 
+// Helper: add click outside listener
 function addClickOutsideListener(
   host: HTMLElement,
   setPanel: (v: string) => void
@@ -47,6 +66,7 @@ function addClickOutsideListener(
   };
 }
 
+// Helper: initialize configurator (for useEffect)
 function initializeConfigurator(
   host: HTMLElement,
   setPanel: (v: string) => void
@@ -54,42 +74,32 @@ function initializeConfigurator(
   if (!host.id) {
     throw new Error("<key-configurator> requires a non-empty id attribute.");
   }
-  const panelKey = `${host.id}:panel`;
-  const saved = localStorage.getItem(panelKey);
-  if (saved === "config" || saved === "info") {
-    setPanel(saved);
-  } else {
-    setPanel("");
-  }
+  setPanel(getPanelState(host.id));
   initializeLocalStorageIfNeeded(host);
   return addClickOutsideListener(host, setPanel);
+}
+
+// Helper: handle config/info button click
+function togglePanel(current: string, target: string): string {
+  return current === target ? "" : target;
 }
 
 function KeyConfiguratorComponent(this: HTMLElement) {
   const [panel, setPanel] = useState("config"); // 'config' | 'info' | ''
 
-  // Restore panel state from localStorage
+  // Restore panel state from localStorage and set up listeners
   useEffect(() => {
     return initializeConfigurator(this, setPanel);
   }, [this.id]);
 
   // Persist panel state
   useEffect(() => {
-    if (this.id) {
-      if (!panel) {
-        localStorage.removeItem(`${this.id}:panel`);
-      } else {
-        localStorage.setItem(`${this.id}:panel`, panel);
-      }
-    }
+    if (this.id) persistPanelState(this.id, panel);
   }, [panel, this.id]);
 
-  function showConfig() {
-    setPanel(panel === "config" ? "" : "config");
-  }
-  function showInfo() {
-    setPanel(panel === "info" ? "" : "info");
-  }
+  // Handlers
+  const showConfig = () => setPanel(togglePanel(panel, "config"));
+  const showInfo = () => setPanel(togglePanel(panel, "info"));
 
   return html`
     <style>
