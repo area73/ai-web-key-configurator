@@ -2,28 +2,13 @@ import { component, html, useState, useEffect } from "haunted";
 
 function getKeyName(el: HTMLElement): string | null {
   const pair = el.closest("key-pair");
-  console.log("[key-value][getKeyName] this:", el, "found pair:", pair);
   if (!pair) return null;
   const name = pair.querySelector("key-name");
-  console.log(
-    "[key-value][getKeyName] found name:",
-    name,
-    "text:",
-    name?.textContent
-  );
   return name?.textContent?.trim() || null;
 }
 
 function getNamespace(el: HTMLElement): string | null {
   const configurator = el.closest("key-configurator");
-  console.log(
-    "[key-value][getNamespace] this:",
-    el,
-    "found configurator:",
-    configurator,
-    "id:",
-    configurator?.id
-  );
   return configurator?.id || null;
 }
 
@@ -70,25 +55,14 @@ function KeyValueComponent(this: HTMLElement) {
       }
       if (value) {
         parsed[key] = value;
-        console.log(`[key-value] Set ${key} = '${value}' in namespace '${ns}'`);
       } else {
         delete parsed[key];
-        console.log(`[key-value] Deleted key '${key}' from namespace '${ns}'`);
       }
       if (Object.keys(parsed).length > 0) {
         localStorage.setItem(ns, JSON.stringify(parsed));
-        console.log(`[key-value] Updated localStorage['${ns}']:`, parsed);
       } else {
         localStorage.removeItem(ns);
-        console.log(
-          `[key-value] Removed localStorage['${ns}'] (object is empty)`
-        );
       }
-    } else {
-      console.log("[key-value] No namespace or key found for onBlur", {
-        ns,
-        key,
-      });
     }
   }
 
