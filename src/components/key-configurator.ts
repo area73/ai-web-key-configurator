@@ -28,16 +28,17 @@ function KeyConfiguratorComponent(this: HTMLElement) {
         display: block;
         border: 1px solid #ccc;
         padding: 1em;
-        max-width: 400px;
+        padding-top: 1.4em;
+        width: 100%;
         font-family: sans-serif;
-        margin: 2em;
+        margin: 2em 0;
         position: relative;
         box-sizing: border-box;
       }
-      .cope-label {
+      .scope-label {
         position: absolute;
         top: 0;
-        left: 1em;
+        left: 0.75em;
         transform: translateY(-50%);
         background: #fff;
         padding: 0 0.5em;
@@ -45,14 +46,17 @@ function KeyConfiguratorComponent(this: HTMLElement) {
         color: #888;
         font-family: monospace;
         pointer-events: none;
+        line-height: 1;
       }
       ::slotted(key-pair) {
-        display: flex;
-        align-items: center;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 1em;
         margin-bottom: 1em;
+        align-items: center;
       }
     </style>
-    <span class="scope-label">Sope: ${this.id}</span>
+    <span class="scope-label">Scope: ${this.id}</span>
     <slot></slot>
   `;
 }

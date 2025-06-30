@@ -71,11 +71,12 @@ function KeyValueComponent(this: HTMLElement) {
   return html`
     <style>
       :host {
-        flex: 2;
+        width: 100%;
       }
       input[type="text"] {
         width: 100%;
         padding: 0.3em;
+        box-sizing: border-box;
       }
     </style>
     <input
