@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Key Configurator Integration Example</title>
+    <script type="module" src="../dist/index.js"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 2em;
+      }
+      key-configurator {
+        display: block;
+        border: 1px solid #ccc;
+        padding: 1em;
+        max-width: 400px;
+      }
+      key-pair {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1em;
+      }
+      key-name {
+        flex: 1;
+        font-weight: bold;
+      }
+      key-value {
+        flex: 2;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 0.3em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Key Configurator Integration Example</h1>
+    <key-configurator id="my-app-keys">
+      <key-pair>
+        <key-name>OPEN-API-KEY</key-name>
+        <key-value>default-api-key-123</key-value>
+      </key-pair>
+      <key-pair>
+        <key-name>ANOTHER-KEY</key-name>
+      </key-pair>
+    </key-configurator>
+    <p>
+      Open the devtools and inspect <code>localStorage</code> to see the values
+      update as you edit and blur the inputs.
+    </p>
+  </body>
+</html>

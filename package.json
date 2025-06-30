@@ -1,0 +1,43 @@
+{
+  "name": "ai-web-key-configurator",
+  "version": "1.0.0",
+  "description": "a simple web component to configure environment vars to been used on other proyects.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "vite build",
+    "test:web": "web-test-runner --files 'test/**/*.test.ts' --node-resolve",
+    "examples": "vite --config vite.config.examples.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/area73/ai-web-key-configurator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/area73/ai-web-key-configurator/issues"
+  },
+  "homepage": "https://github.com/area73/ai-web-key-configurator#readme",
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/mocha": "^10.0.10",
+    "@web/dev-server-esbuild": "^1.0.4",
+    "@web/test-runner": "^0.20.2",
+    "@web/test-runner-playwright": "^0.11.1",
+    "haunted": "^6.1.0",
+    "lit-html": "^1.4.1",
+    "vite": "^7.0.0",
+    "vitest": "^3.2.4"
+  },
+  "files": "[\"dist\"]",
+  "exports": [
+    [
+      "./dist/index.js"
+    ]
+  ]
+}
