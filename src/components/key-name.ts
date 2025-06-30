@@ -4,4 +4,4 @@ function KeyNameComponent(this: HTMLElement) {
   return html`<span>${this.textContent}</span>`;
 }
 
-export const KeyName = component(KeyNameComponent, { useShadowDOM: true });
+export const KeyName = component(KeyNameComponent);
