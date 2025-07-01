@@ -21,3 +21,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Modern Apple-inspired UI and accessibility improvements.
 - Unit tests for all components using web-test-runner and Playwright.
 - Vite build for ESM-ready npm package.
+
+## [1.0.1] - 2024-07-01
+
+### Added
+
+- chore: add CHANGELOG.md for project documentation
+
+### Changed
+
+- Removed `publishConfig` from package.json to allow correct publishing to GitHub Packages registry.
