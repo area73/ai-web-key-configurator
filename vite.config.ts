@@ -10,12 +10,10 @@ export default defineConfig({
       formats: ["es"],
     },
     rollupOptions: {
-      // Externalize deps that shouldn't be bundled
-      external: ["haunted"],
+      // Haunted ya no es externo, así que el bundle lo incluirá
+      external: [],
       output: {
-        globals: {
-          haunted: "haunted",
-        },
+        globals: {},
       },
     },
     emptyOutDir: true,
