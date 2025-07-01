@@ -43,9 +43,6 @@
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
   },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  },
   "bugs": {
     "url": "https://github.com/area73/ai-web-key-configurator/issues"
   },
