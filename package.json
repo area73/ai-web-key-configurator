@@ -1,6 +1,7 @@
 {
   "name": "@a73/ai-web-key-configurator",
   "version": "1.0.0",
+  "type": "module",
   "description": "A simple functional web component library to configure environment variables for other projects.",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -17,10 +18,9 @@
   "sideEffects": false,
   "scripts": {
     "build": "vite build",
-    "test:web": "web-test-runner --files 'src/components/*.test.ts' --node-resolve",
+    "test": "web-test-runner --files 'src/components/*.test.ts' --node-resolve",
     "examples": "vite --config vite.config.examples.js",
-    "test": "web-test-runner",
-    "release": "node scripts/release.js"
+    "release": "npm run test && npm run build && node scripts/release.js"
   },
   "repository": {
     "type": "git",
