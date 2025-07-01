@@ -1,13 +1,23 @@
 {
-  "name": "ai-web-key-configurator",
+  "name": "@a73/ai-web-key-configurator",
   "version": "1.0.0",
-  "description": "a simple web component to configure environment vars to been used on other proyects.",
+  "description": "A simple functional web component library to configure environment variables for other projects.",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
   "scripts": {
     "build": "vite build",
-    "test:web": "web-test-runner --files 'test/**/*.test.ts' --node-resolve",
+    "test:web": "web-test-runner --files 'src/components/*.test.ts' --node-resolve",
     "examples": "vite --config vite.config.examples.js",
     "test": "web-test-runner"
   },
@@ -15,10 +25,23 @@
     "type": "git",
     "url": "git+https://github.com/area73/ai-web-key-configurator.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
+  "keywords": [
+    "web component",
+    "functional",
+    "environments configurator",
+    "AI",
+    "agent"
+  ],
+  "author": {
+    "name": "Rodrigo Erades",
+    "email": "rerades@siete3.com",
+    "url": "http://siete3.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
   "bugs": {
     "url": "https://github.com/area73/ai-web-key-configurator/issues"
   },
@@ -35,12 +58,6 @@
     "vite": "^7.0.0",
     "vitest": "^3.2.4"
   },
-  "files": "[\"dist\"]",
-  "exports": [
-    [
-      "./dist/index.js"
-    ]
-  ],
   "resolutions": {
     "js-tokens": "^4.0.0"
   }
