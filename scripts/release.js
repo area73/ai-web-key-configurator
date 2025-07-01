@@ -39,7 +39,12 @@ function prompt(question) {
   execSync("git add package.json", { stdio: "inherit" });
   execSync(`git commit -m "release: v${version}"`, { stdio: "inherit" });
   execSync(`git tag v${version}`, { stdio: "inherit" });
-  execSync(`git push origin main --follow-tags`, { stdio: "inherit" });
+  const currentBranch = execSync("git rev-parse --abbrev-ref HEAD")
+    .toString()
+    .trim();
+  execSync(`git push origin ${currentBranch} --follow-tags`, {
+    stdio: "inherit",
+  });
   execSync(`git push origin v${version}`, { stdio: "inherit" });
   console.log(`\n¡Release v${version} creado y subido!`);
 })();
