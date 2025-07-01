@@ -7,11 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.11] - 2024-07-01
+
+- release: v1.0.11-V1.0.6
+- fixing ci
+
+## [1.0.5] - 2024-07-01
+
+- release: v1.0.5
+- release: v1.0.4
+- chore: update CHANGELOG.md for version 1.0.4, documenting recent releases and workflow enhancements
+- chore: update package name and version in package.json for consistency with organization New organization area73
+
 ## [1.0.4] - 2024-07-01
 
 - release: v1.0.4
 - fix: enhance npm publish workflow for authentication
-- chore: update package name and version in package.json for consistency with organization New organization area73
 
 ## [1.0.3] - 2024-07-01
 
