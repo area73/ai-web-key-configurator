@@ -1,13 +1,16 @@
 #!/usr/bin/env node
 
-const { execSync } = require("child_process");
-const fs = require("fs");
-const path = require("path");
+import { execSync } from "child_process";
+import fs from "fs";
+import path from "path";
+import readline from "readline";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const pkgPath = path.resolve(__dirname, "../package.json");
 const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
-
-const readline = require("readline");
 
 function prompt(question) {
   const rl = readline.createInterface({
