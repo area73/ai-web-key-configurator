@@ -19,7 +19,8 @@
     "build": "vite build",
     "test:web": "web-test-runner --files 'src/components/*.test.ts' --node-resolve",
     "examples": "vite --config vite.config.examples.js",
-    "test": "web-test-runner"
+    "test": "web-test-runner",
+    "release": "node scripts/release.js"
   },
   "repository": {
     "type": "git",
@@ -41,6 +42,9 @@
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   },
   "bugs": {
     "url": "https://github.com/area73/ai-web-key-configurator/issues"
