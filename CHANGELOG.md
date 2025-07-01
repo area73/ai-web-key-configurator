@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.13] - 2024-07-01
+
+- Haunted is now bundled inside the final `dist/` output.
+- You no longer need to install `haunted` separately when using this package.
+- Vite config and dependencies updated for true plug-and-play integration.
+
 ## [1.0.11] - 2024-07-01
 
 - release: v1.0.11-V1.0.6
