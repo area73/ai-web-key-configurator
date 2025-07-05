@@ -115,5 +115,5 @@ function KeyValueComponent(this: HTMLElement) {
   `;
 }
 
-export type KeyValueType = ComponentConstructor<{}>;
+export type KeyValueType = new (...args: any[]) => HTMLElement;
 export const KeyValue: KeyValueType = component(KeyValueComponent);

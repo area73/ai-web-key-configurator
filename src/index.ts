@@ -1,11 +1,11 @@
-import { KeyConfigurator } from "./components/key-configurator";
-import type { KeyConfiguratorType } from "./components/key-configurator";
-import { KeyPair } from "./components/key-pair";
-import type { KeyPairType } from "./components/key-pair";
-import { KeyName } from "./components/key-name";
-import type { KeyNameType } from "./components/key-name";
-import { KeyValue } from "./components/key-value";
-import type { KeyValueType } from "./components/key-value";
+import { KeyConfigurator } from "./components/key-configurator.js";
+import type { KeyConfiguratorType } from "./components/key-configurator.js";
+import { KeyPair } from "./components/key-pair.js";
+import type { KeyPairType } from "./components/key-pair.js";
+import { KeyName } from "./components/key-name.js";
+import type { KeyNameType } from "./components/key-name.js";
+import { KeyValue } from "./components/key-value.js";
+import type { KeyValueType } from "./components/key-value.js";
 
 // Register custom elements in a side-effect-safe way
 if (!customElements.get("key-configurator")) {

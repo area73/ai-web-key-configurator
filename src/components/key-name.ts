@@ -1,5 +1,4 @@
 import { component, html } from "haunted";
-import type { ComponentConstructor } from "haunted/lib/component";
 
 function KeyNameComponent(this: HTMLElement) {
   return html`
@@ -22,5 +21,5 @@ function KeyNameComponent(this: HTMLElement) {
   `;
 }
 
-export type KeyNameType = ComponentConstructor<{}>;
+export type KeyNameType = new (...args: any[]) => HTMLElement;
 export const KeyName: KeyNameType = component(KeyNameComponent);
