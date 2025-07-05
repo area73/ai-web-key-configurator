@@ -1,6 +1,6 @@
 {
   "name": "@area73/ai-web-key-configurator",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "type": "module",
   "description": "A simple functional web component library to configure environment variables for other projects.",
   "main": "./dist/index.js",
