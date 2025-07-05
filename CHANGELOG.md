@@ -7,6 +7,57 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.15] - 2024-12-19
+
+### Added
+
+- **Playwright E2E Testing**: Complete end-to-end testing suite with Playwright for real browser testing
+  - Added comprehensive E2E tests for all components (`key-configurator`, `key-pair`, `key-name`, `key-value`)
+  - Advanced E2E tests covering edge cases, localStorage persistence, and panel state management
+  - Integration tests for input/blur lifecycle and component interactions
+  - Smoke tests for basic component functionality
+- **Enhanced Test Coverage**: Improved unit test coverage with robust helper functions
+  - Added coverage scripts and configuration for web-test-runner
+  - Enhanced key-configurator tests with edge case handling and localStorage persistence
+  - Utility functions for improved test readability and maintainability
+- **TypeScript Improvements**: Better type definitions and module resolution
+  - Added TypeScript definitions generation with vite-plugin-dts
+  - Updated import paths to include .js extension for proper ESM resolution
+  - Enhanced type definitions for all components (KeyConfigurator, KeyPair, KeyName, KeyValue)
+
+### Changed
+
+- **Code Quality**: Significant refactoring and code organization improvements
+  - Eliminated code duplication in test files through helper functions
+  - Updated component exports to include proper type definitions
+  - Improved functional programming patterns and code guidelines
+- **Testing Strategy**: Separated unit tests from integration tests
+  - Unit tests focus on pure functions and component logic
+  - E2E tests handle real browser interactions and component lifecycle
+  - Skipped problematic unit tests that require real browser environment
+
+### Fixed
+
+- **Build and Development**: Various fixes for better development experience
+  - Fixed examples script to properly open index.html file
+  - Refactored click outside listener for better performance
+  - Updated web-test-runner configuration for better coverage reporting
+
+### Technical
+
+- **Dependencies**: Updated testing infrastructure
+  - Added Playwright for E2E testing
+  - Enhanced web-test-runner configuration
+  - Added start-server-and-test for automated E2E testing
+- **Documentation**: Added comprehensive code guidelines and functional refactor patterns
+
+## [1.0.14] - 2024-07-01
+
+### Changed
+
+- Updated package version and build configuration
+- Enhanced TypeScript support and type definitions
+
 ## [1.0.13] - 2024-07-01
 
 - Haunted is now bundled inside the final `dist/` output.
