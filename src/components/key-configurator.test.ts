@@ -9,6 +9,15 @@ import {
   addClickOutsideListener,
 } from "./key-configurator.js";
 
+// Helper to create configurator HTML for tests
+function createConfiguratorHTML({
+  id = "test-ns",
+  key = "FOO",
+  value = "bar",
+} = {}) {
+  return `<key-configurator id="${id}"><key-pair><key-name>${key}</key-name><key-value>${value}</key-value></key-pair></key-configurator>`;
+}
+
 describe("<key-configurator>", () => {
   beforeEach(() => {
     localStorage.clear();
@@ -16,8 +25,11 @@ describe("<key-configurator>", () => {
   });
 
   it("renders children", () => {
-    document.body.innerHTML =
-      '<key-configurator id="test-ns"><key-pair><key-name>FOO</key-name><key-value>bar</key-value></key-pair></key-configurator>';
+    document.body.innerHTML = createConfiguratorHTML({
+      id: "test-ns",
+      key: "FOO",
+      value: "bar",
+    });
     const pair = document.querySelector("key-pair");
     expect(pair).to.not.be.null;
     if (!pair) return;
@@ -50,8 +62,11 @@ describe("<key-configurator> edge cases", () => {
   });
 
   it("initializes localStorage with key-pair children", () => {
-    document.body.innerHTML =
-      '<key-configurator id="init-ns"><key-pair><key-name>FOO</key-name><key-value>bar</key-value></key-pair></key-configurator>';
+    document.body.innerHTML = createConfiguratorHTML({
+      id: "init-ns",
+      key: "FOO",
+      value: "bar",
+    });
     const el = document.querySelector("key-configurator");
     if (!el) throw new Error("key-configurator not found");
     initializeLocalStorageIfNeeded(el as HTMLElement);
@@ -138,4 +153,17 @@ describe("<key-configurator> edge cases", () => {
     await waitFor(() => !configPanel.className.includes("open") && !infoPanel.className.includes("open"));
   });
   */
+
+  it("getPanelState returns '' for unknown value", () => {
+    const id = "unknown-ns";
+    localStorage.setItem(id + ":panel", "other");
+    expect(getPanelState(id)).to.equal("");
+  });
+
+  it("persistPanelState removes panel key when panel is falsy", () => {
+    const id = "remove-ns";
+    localStorage.setItem(id + ":panel", "config");
+    persistPanelState(id, "");
+    expect(localStorage.getItem(id + ":panel")).to.be.null;
+  });
 });

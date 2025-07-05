@@ -1,19 +1,19 @@
 import { component, html, useState, useEffect } from "haunted";
 import type { ComponentConstructor } from "haunted/lib/component";
 
-function getKeyName(el: HTMLElement): string | null {
+export function getKeyName(el: HTMLElement): string | null {
   const pair = el.closest("key-pair");
   if (!pair) return null;
   const name = pair.querySelector("key-name");
   return name?.textContent?.trim() || null;
 }
 
-function getNamespace(el: HTMLElement): string | null {
+export function getNamespace(el: HTMLElement): string | null {
   const configurator = el.closest("key-configurator");
   return configurator?.id || null;
 }
 
-function loadValueFromStorage(host: HTMLElement): string {
+export function loadValueFromStorage(host: HTMLElement): string {
   const ns = getNamespace(host);
   const key = getKeyName(host);
   if (ns && key) {
@@ -28,7 +28,7 @@ function loadValueFromStorage(host: HTMLElement): string {
   return host.textContent?.trim() || "";
 }
 
-function saveValueToStorage(host: HTMLElement, value: string) {
+export function saveValueToStorage(host: HTMLElement, value: string) {
   const ns = getNamespace(host);
   const key = getKeyName(host);
   if (ns && key) {
