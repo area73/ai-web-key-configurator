@@ -278,3 +278,12 @@ export type KeyConfiguratorType = new (...args: any[]) => HTMLElement;
 export const KeyConfigurator = component(KeyConfiguratorComponent, {
   useShadowDOM: true,
 });
+
+export {
+  initializeConfigurator,
+  persistPanelState,
+  getPanelState,
+  initializeLocalStorageIfNeeded,
+  togglePanel,
+  addClickOutsideListener,
+};
