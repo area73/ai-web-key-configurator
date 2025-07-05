@@ -19,7 +19,7 @@
   "scripts": {
     "build": "vite build",
     "test": "web-test-runner --files 'src/components/*.test.ts' --node-resolve",
-    "examples": "vite --config vite.config.examples.js",
+    "examples": "vite --config vite.config.examples.js --open /examples/index.html",
     "release": "npm run test && npm run build && node scripts/release.js"
   },
   "repository": {

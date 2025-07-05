@@ -58,7 +58,7 @@ function addClickOutsideListener(
 ) {
   function handleClickOutside(e: MouseEvent) {
     if (!host.contains(e.target as Node)) {
-      setPanel("");
+      return;
     }
   }
   document.addEventListener("mousedown", handleClickOutside);
