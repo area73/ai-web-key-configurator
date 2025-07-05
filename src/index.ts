@@ -1,7 +1,11 @@
 import { KeyConfigurator } from "./components/key-configurator";
+import type { KeyConfiguratorType } from "./components/key-configurator";
 import { KeyPair } from "./components/key-pair";
+import type { KeyPairType } from "./components/key-pair";
 import { KeyName } from "./components/key-name";
+import type { KeyNameType } from "./components/key-name";
 import { KeyValue } from "./components/key-value";
+import type { KeyValueType } from "./components/key-value";
 
 // Register custom elements in a side-effect-safe way
 if (!customElements.get("key-configurator")) {
@@ -17,4 +21,13 @@ if (!customElements.get("key-value")) {
   customElements.define("key-value", KeyValue);
 }
 
-export { KeyConfigurator, KeyPair, KeyName, KeyValue };
+export {
+  KeyConfigurator,
+  KeyConfiguratorType,
+  KeyPair,
+  KeyPairType,
+  KeyName,
+  KeyNameType,
+  KeyValue,
+  KeyValueType,
+};

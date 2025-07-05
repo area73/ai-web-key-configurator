@@ -1,4 +1,5 @@
 import { component, html, useState, useEffect } from "haunted";
+import type { ComponentConstructor } from "haunted/lib/component";
 
 const INFO_TEXT = `
 <b>Key Configurator</b> is a web component for securely and conveniently managing configuration keys.
@@ -273,6 +274,10 @@ function KeyConfiguratorComponent(this: HTMLElement) {
   `;
 }
 
-export const KeyConfigurator = component(KeyConfiguratorComponent, {
-  useShadowDOM: true,
-});
+export type KeyConfiguratorType = ComponentConstructor<{}>;
+export const KeyConfigurator: KeyConfiguratorType = component(
+  KeyConfiguratorComponent,
+  {
+    useShadowDOM: true,
+  }
+);

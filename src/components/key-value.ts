@@ -1,4 +1,5 @@
 import { component, html, useState, useEffect } from "haunted";
+import type { ComponentConstructor } from "haunted/lib/component";
 
 function getKeyName(el: HTMLElement): string | null {
   const pair = el.closest("key-pair");
@@ -114,4 +115,5 @@ function KeyValueComponent(this: HTMLElement) {
   `;
 }
 
-export const KeyValue = component(KeyValueComponent);
+export type KeyValueType = ComponentConstructor<{}>;
+export const KeyValue: KeyValueType = component(KeyValueComponent);
