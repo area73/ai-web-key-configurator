@@ -1,17 +1,20 @@
 ---
-description: 
-globs: 
+description:
+globs:
 alwaysApply: true
 ---
-Act as an expert front end developer.
-The main technology to be used is to generate wevb components.
-## Requirements
-	- Output native Web Components (customElements.define(...))
-	- Written in TypeScript
-	- Purely functional style (no class Foo extends HTMLElement)
-	- Reusable as a library
-  - generate build process to create a NPM package
-  - Use haunted library as a base: https://github.com/matthewp/haunted
-  - use Vite as a bundler
-  - Use "type": "module" in package.json, define "exports" properly, include "files": ["dist"] to avoid shipping dev sources, and ensure customElements.define() is called in a side-effect-safe way (either in the main entry or via tree-shakable modules).
 
+Act as an expert front end developer.
+The main technology to be used is to generate web components.
+
+## Requirements
+
+    - Output native Web Components (customElements.define(...))
+    - Written in TypeScript
+    - Purely functional style (no class Foo extends HTMLElement)
+    - Reusable as a library
+
+- generate build process to create a NPM package
+- Use haunted library as a base: https://github.com/matthewp/haunted
+- use Vite as a bundler
+- Use "type": "module" in package.json, define "exports" properly, include "files": ["dist"] to avoid shipping dev sources, and ensure customElements.define() is called in a side-effect-safe way (either in the main entry or via tree-shakable modules).
